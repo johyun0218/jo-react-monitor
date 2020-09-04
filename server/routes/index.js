@@ -38,6 +38,7 @@ async function getList() {
             list.push(result);
         } catch(e) {
             list.push({server: s, error: e.statusCode});
+            break;
         }
     }
     return list;
@@ -46,7 +47,7 @@ async function getList() {
 
 async function getRequest(filename) {
 
-    let option = {uri: `${server_fix}/${filename}.log`, timeout: 150};
+    let option = {uri: `${server_fix}/${filename}.log`, timeout: 1000};
 
     let body = await request(option)
     
@@ -71,7 +72,7 @@ async function getRequest(filename) {
     result.disk = disk;
 
     let diskPer = parseFloat(html.match(/DISK PER:\s([0-9\.]+)\s%/)[1]);
-    result.diskPer = diskPer;
+    result.diskPer = xxx('', diskPer, 2);
 
     let memTot = parseFloat(html.match(/MemTotal:\s+([0-9]+)\skB/)[1]);
     result.memTot = memTot;
@@ -82,9 +83,35 @@ async function getRequest(filename) {
     let memAvailable = parseFloat(html.match(/MemAvailable:\s+([0-9]+)\skB/)[1]);
     result.memAvailable = memAvailable;        
 
-    let memPer = (memTot - memAvailable) / memTot * 100
-    result.memPer = memPer;
+    let memPer = (memTot - memAvailable) / memTot * 100;
+    result.memPer = parseFloat(xxx('', memPer, 2));
     return result;
+}
+
+function xxx(strMode, nCalcVal, nDigit) {
+    if(strMode == "CEIL") {  //절상
+        if(nDigit < 0) {
+            nDigit = -(nDigit);
+            nCalcVal = Math.ceil(nCalcVal / Math.pow(10, nDigit)) * Math.pow(10, nDigit);
+        } else {
+            nCalcVal = Math.ceil(nCalcVal * Math.pow(10, nDigit)) / Math.pow(10, nDigit);
+        }
+    } else if(strMode == "FLOOR") { //절하
+        if(nDigit < 0) {
+            nDigit = -(nDigit);
+            nCalcVal = Math.floor(nCalcVal / Math.pow(10, nDigit)) * Math.pow(10, nDigit);
+        } else {
+            nCalcVal = Math.floor(nCalcVal * Math.pow(10, nDigit)) / Math.pow(10, nDigit);
+        }
+    } else {        //반올림
+        if(nDigit < 0) {
+            nDigit = -(nDigit);
+            nCalcVal = (nCalcVal / Math.pow(10, nDigit)).toFixed(0) * Math.pow(10, nDigit); 
+        } else {
+            nCalcVal = nCalcVal.toFixed(nDigit)
+        }
+    }
+    return nCalcVal;
 }
 
 router.get('/server', async (req, res) => {
