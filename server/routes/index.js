@@ -20,7 +20,12 @@ let servers = {
     "fopc-mlb-a": "ip-10-12-45-54.ap-northeast-2.compute.internal",
     "fopc-mlb-c": "ip-10-12-45-226.ap-northeast-2.compute.internal",
     "fopc-sa-a": "ip-10-12-48-70.ap-northeast-2.compute.internal",
-    "fopc-sa-c": "ip-10-12-48-186.ap-northeast-2.compute.internal"
+    "fopc-sa-c": "ip-10-12-48-186.ap-northeast-2.compute.internal",
+
+    "fopc-dv-a": "ip-10-12-53-96.ap-northeast-2.compute.internal",
+    "fopc-dv-c": "ip-10-12-53-234.ap-northeast-2.compute.internal",
+    "fomo-dv-a": "ip-10-12-55-41.ap-northeast-2.compute.internal",
+    "fomo-dv-c": "ip-10-12-55-189.ap-northeast-2.compute.internal",
 }
 
 router.get('/', function(req, res) {

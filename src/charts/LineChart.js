@@ -40,12 +40,12 @@ function LineChart(props) {
         <div>
         <RTChart
             chart={chart}
-            fields={['batch', 'bo-a', 'bo-c', 'fomo-dx-a', 'fomo-dx-c', 'fomo-mlb-a', 'fomo-mlb-c', 'fomo-sa-a', 'fomo-sa-c', 'fopc-dx-a', 'fopc-dx-c', 'fopc-mlb-a', 'fopc-mlb-c', 'fopc-sa-a', 'fopc-sa-c']}
+            fields={['batch', 'bo-a', 'bo-c', 'fomo-dx-a', 'fomo-dx-c', 'fomo-mlb-a', 'fomo-mlb-c', 'fomo-sa-a', 'fomo-sa-c', 'fopc-dx-a', 'fopc-dx-c', 'fopc-mlb-a', 'fopc-mlb-c', 'fopc-sa-a', 'fopc-sa-c', 'fopc-dv-a', 'fopc-dv-c', 'fomo-dv-a', 'fomo-dv-c']}
             data={props.data.cpu} />
 
         <RTChart
             chart={chart2}
-            fields={['batch', 'bo-a', 'bo-c', 'fomo-dx-a', 'fomo-dx-c', 'fomo-mlb-a', 'fomo-mlb-c', 'fomo-sa-a', 'fomo-sa-c', 'fopc-dx-a', 'fopc-dx-c', 'fopc-mlb-a', 'fopc-mlb-c', 'fopc-sa-a', 'fopc-sa-c']}
+            fields={['batch', 'bo-a', 'bo-c', 'fomo-dx-a', 'fomo-dx-c', 'fomo-mlb-a', 'fomo-mlb-c', 'fomo-sa-a', 'fomo-sa-c', 'fopc-dx-a', 'fopc-dx-c', 'fopc-mlb-a', 'fopc-mlb-c', 'fopc-sa-a', 'fopc-sa-c', 'fopc-dv-a', 'fopc-dv-c', 'fomo-dv-a', 'fomo-dv-c']}
             data={props.data.memory} />
 
         </div>

@@ -75,7 +75,7 @@ function App() {
   useEffect(() => {
     //document.title = `You clicked ${count} times`;
     forceUpdate();
-    setInterval(() => forceUpdate(), 60000);    
+    setInterval(() => forceUpdate(), 60000 * 10);     // 10분
   }, []);
   return (
     <BrowserRouter>
